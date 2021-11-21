@@ -52,4 +52,9 @@ public class LoginController {
         model.addAttribute("user", user);
         return "index";
     }
+
+    @GetMapping("/403")
+    public String forbid() {
+        return "403";
+    }
 }
