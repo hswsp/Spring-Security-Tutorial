@@ -1,8 +1,13 @@
 package com.example.security.pojo;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.util.Date;
-
+import java.util.Set;
+@NoArgsConstructor
+@Data
 public class User implements Serializable {
 
     private static final long serialVersionUID = -5440372534300871944L;
@@ -12,35 +17,15 @@ public class User implements Serializable {
     private String password;
     private Date createTime;
     private String status;
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getUserName() {
-        return userName;
-    }
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
+    private Set<String> role;
+
+    private Set<String> permission;
+
+    public User(String username, String password, Set<String> role, Set<String> permission) {
+        this.userName = username;
         this.password = password;
-    }
-    public Date getCreateTime() {
-        return createTime;
-    }
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-    public String getStatus() {
-        return status;
-    }
-    public void setStatus(String status) {
-        this.status = status;
+        this.role = role;
+        this.permission = permission;
     }
 
 }

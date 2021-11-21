@@ -1,11 +1,13 @@
 package com.example.security.shiro;
 
+import com.example.security.autentication.JWTUtil;
 import com.example.security.dao.oracle.UserMapper;
 import com.example.security.dao.oracle.UserPermissionMapper;
 import com.example.security.dao.oracle.UserRoleMapper;
 import com.example.security.pojo.Permission;
 import com.example.security.pojo.Role;
 import com.example.security.pojo.User;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -60,13 +62,13 @@ public class ShiroRealm extends AuthorizingRealm {
      * 登录认证
      */
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException{
 
         // 获取用户输入的用户名和密码
-        String userName = (String) token.getPrincipal();
-        String password = new String((char[]) token.getCredentials());
-
+        String userName = (String) authenticationToken.getPrincipal();
+        String password = new String((char[]) authenticationToken.getCredentials());
         System.out.println("用户" + userName + "认证-----ShiroRealm.doGetAuthenticationInfo");
+
 
         // 通过用户名到数据库查询用户信息
         User user = userMapper.findByUserName(userName);
