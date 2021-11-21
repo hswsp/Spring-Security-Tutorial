@@ -21,10 +21,12 @@
     function login() {
     	var username = $("input[name='username']").val();
     	var password = $("input[name='password']").val();
+    	//Remember Me checkbox
+		var rememberMe = $("input[name='rememberMe']").is(':checked');
         $.ajax({
             type: "post",
             url: ctx + "login",
-            data: {"username": username,"password": password},
+            data: {"username": username,"password": password,"rememberMe": rememberMe},
             dataType: "json",
             success: function (r) {
                 if (r.code == 0) {

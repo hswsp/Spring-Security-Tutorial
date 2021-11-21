@@ -20,10 +20,10 @@ public class LoginController {
 
     @PostMapping("/login")
     @ResponseBody
-    public ResponseBo login(String username, String password) {
+    public ResponseBo login(String username, String password, Boolean rememberMe) {
         // 密码MD5加密
         password = MD5Utils.encrypt(username, password);
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password,rememberMe);
         // 获取Subject对象
         Subject subject = SecurityUtils.getSubject();
         try {
